@@ -4,4 +4,3 @@ Date=$(date +%Y-%m-%d-%H:%M)
 echo "$Date;$Value" >> data.csv
 git add .
 git commit -m "$(date -d "now" +"%Y-%m-%d:%Hh%M") : Actualisation des données" 
-git push
