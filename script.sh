@@ -5,4 +5,4 @@ Value2=$(cat /home/rostane/Projet_final/Project/Generated_data/NASDAQ.html | gre
 Date=$(date +%Y-%m-%d-%H:%M)
 echo "$Date;$Value1;$Value2" >> /home/rostane/Projet_final/Project/Generated_data/data.csv
 git add .
-git commit -m "$(date -d "now" +"%Y-%m-%d:%Hh%M") : Actualisation des données" 
+git commit -m " Actualisation des données - $(date -d "now" +"%Y-%m-%d à %Hh%M")" 
