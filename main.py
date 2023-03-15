@@ -7,9 +7,21 @@ app = dash.Dash(__main__)
 app.layout = html.Div(children=[
     html.H1(children='Titre de l\'application'),
 
-    html.Div(children='''
-        Bienvenue dans cette API, l'objectif est de suivre en direct l'évolution du prix du S&P500 et du NASDAQ.
-    '''),
+    html.Div(
+    style={
+        'background-image': 'url("/assets/background.jpg")',
+        'background-size': 'cover',
+        'color': 'white',
+        'padding': '50px',
+        'text-align': 'center',
+        'font-size': '1.5rem',
+    },
+    children=[
+        html.H1(children='Bienvenue dans cette API'),
+        html.P(children='Suivez en direct l\'évolution du prix du S&P500 et du NASDAQ.'),
+        html.P(children='Nous mettons à jour les données toutes les minutes.'),
+    ]
+)
 
     dcc.Graph(
         id='Cours de Index S&P 500',
