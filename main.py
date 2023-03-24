@@ -22,7 +22,7 @@ app.layout = dbc.Container(fluid=True, children=[
                         ],
                         className="header text-center py-4",
                         style={
-                            'background-color': '#1E88E5',  # Vous pouvez choisir la couleur de la banderolle ici
+                            'background-color': '#2E4053',  # Vous pouvez choisir la couleur de la banderolle ici
                             'color': 'white',
                         }
                     ),
@@ -32,47 +32,73 @@ app.layout = dbc.Container(fluid=True, children=[
     ),
 
     dbc.Row(
-        [
-            dbc.Col(
-                [
-                    html.H2("Informations sur les indices", className="info-title text-center mt-5 mb-4"),
+    [
+        dbc.Col(
+            [
+                html.H2("Informations sur les indices", className="info-title text-center mt-5 mb-4", style={'font-size': '2.5em', 'font-weight': 'bold', 'margin-bottom': '0'}),
 
-                    dbc.Row(
-                        [
-                            dbc.Col(
-                                [
-                                    html.H3("SP500", className="info-subtitle text-center"),
-                                    html.Div([
-                                        html.P(id='sp500-min', className="info-text"),
-                                        html.P(id='sp500-max', className="info-text"),
-                                        html.P(id='sp500-std', className="info-text"),
-                                        html.P(id='sp500-last', className="info-text"),
-                                        html.P(id='sp500-first', className="info-text")
-                                    ], className="info-box text-center")
-                                ],
-                                className="mb-4", md=6
-                            ),
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                html.Div(
+                                    [
+                                        html.I(className="fas fa-chart-line", style={'font-size': '3em'}),
+                                        html.H3("SP500", className="info-subtitle text-center", style={'font-size': '1.5em', 'font-weight': 'bold', 'margin-bottom': '0'}),
+                                    ],
+                                    className="info-header text-center",
+                                    style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center', 'margin-bottom': '10px'}
+                                ),
+                                html.Div(
+                                    [
+                                        html.P(id='sp500-min', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                        html.P(id='sp500-max', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                        html.P(id='sp500-std', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                        html.P(id='sp500-last', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                        html.P(id='sp500-first', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                    ],
+                                    className="info-box text-center",
+                                    style={'background-color': '#EAEDED', 'border-radius': '10px', 'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)', 'padding': '20px'}
+                                ),
+                            ],
+                            className="mb-4", md=6
+                        ),
 
-                            dbc.Col(
-                                [
-                                    html.H3("NASDAQ", className="info-subtitle text-center"),
-                                    html.Div([
-                                        html.P(id='nasdaq-min', className="info-text"),
-                                        html.P(id='nasdaq-max', className="info-text"),
-                                        html.P(id='nasdaq-std', className="info-text"),
-                                        html.P(id='nasdaq-last', className="info-text"),
-                                        html.P(id='nasdaq-first', className="info-text")
-                                    ], className="info-box text-center")
-                                ],
-                                className="mb-4", md=6
-                            )
-                        ],
-                        className="info-container"
-                    ),
-                ],
-            ),
-        ],
-    ),
+                        dbc.Col(
+                            [
+                                html.Div(
+                                    [
+                                        html.I(className="fas fa-chart-bar", style={'font-size': '3em'}),
+                                        html.H3("NASDAQ", className="info-subtitle text-center", style={'font-size': '1.5em', 'font-weight': 'bold', 'margin-bottom': '0'}),
+                                    ],
+                                    className="info-header text-center",
+                                    style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center', 'margin-bottom': '10px'}
+                                ),
+                                html.Div(
+                                    [
+                                        html.P(id='nasdaq-min', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                        html.P(id='nasdaq-max', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                        html.P(id='nasdaq-std', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                        html.P(id='nasdaq-last', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                        html.P(id='nasdaq-first', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                    ],
+                                    className="info-box text-center",
+                                    style={'background-color': '#EAEDED', 'border-radius': '10px', 'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)', 'padding': '20px'}
+                                ),
+                            ],
+                            className="mb-4", md=6
+                        )
+                    ],
+                    className="info-container",
+                    style={'width': '100%', 'display': 'flex', 'justify-content': 'space-evenly'}
+                ),
+            ],
+        ),
+    ],
+),
+
+
+                    
 
     dbc.Row(
         [
@@ -148,7 +174,7 @@ def update_all_graphs(n):
     	],
     	'layout': {
         'title': 'Evolution de l\'Idx S&P500',
-        'xaxis': {'title': 'Date', 'range': [pd.Timestamp.now() - pd.Timedelta(hours=7), pd.Timestamp.now()]},
+        'xaxis': {'title': 'Date', 'range': [pd.Timestamp.now() - pd.Timedelta(hours=2), pd.Timestamp.now()]},
         'yaxis': {'title': 'Valeur', 'range': [sp500_mean - 3 * sp500_std, sp500_mean + 3 * sp500_std]},
         'autosize': True,
         'margin': {'l': 50, 'r': 50, 't': 50, 'b': 50},
@@ -193,7 +219,7 @@ def update_all_graphs(n):
     	],
     	'layout': {
         'title': 'Evolution de l\'Idx NASDAQ',
-        'xaxis': {'title': 'Date', 'range': [pd.Timestamp.now() - pd.Timedelta(hours=7), pd.Timestamp.now()]},
+        'xaxis': {'title': 'Date', 'range': [pd.Timestamp.now() - pd.Timedelta(hours=2), pd.Timestamp.now()]},
         'yaxis': {'title': 'Valeur', 'range': [nasdaq_mean - 3 * nasdaq_std, nasdaq_mean + 3 * nasdaq_std]},
         'autosize': True,
         'margin': {'l': 50, 'r': 50, 't': 50, 'b': 50},
