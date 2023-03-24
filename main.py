@@ -7,29 +7,55 @@ import plotly.graph_objs as go
 import dash_bootstrap_components as dbc
 
 df = pd.read_csv("/home/ubuntu/Projet/Project/Generated_data/data.csv", delimiter=";")
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__)
+
+
 
 app.layout = dbc.Container(fluid=True, children=[
-    dbc.Row(
-        [
-            dbc.Col(
-                [
-                    html.Div(
-                        [
-                            html.H1("Bienvenue dans cette API", className="main-title"),
-                            html.P("Suivez en direct l'évolution du prix du S&P500 et du NASDAQ.", className="subtitle"),
-                            html.P("Nous mettons à jour les données toutes les minutes.", className="subtitle"),
-                        ],
-                        className="header text-center py-4",
-                        style={
-                            'background-color': '#2E4053',  # Vous pouvez choisir la couleur de la banderolle ici
-                            'color': 'white',
-                        }
-                    ),
-                ],
-            ),
-        ],
-    ),
+    dbc.Container(fluid=True, children=[
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        html.Div(
+                            [
+                                html.H1("Bienvenue dans ce Dashboard", className="main-title"),
+                                html.P("Suivez en direct l'évolution du prix du S&P500 et du NASDAQ.", className="subtitle"),
+                                html.P("Nous mettons à jour les données toutes les minutes.", className="subtitle"),
+                            ],
+                            className="header text-center py-5",
+                            style={
+                                'background': 'linear-gradient(135deg, #2E4053 0%, #4a69bd 100%)',
+                                'color': 'white',
+                                'border-radius': '10px',
+                                'padding': '30px',
+                                'margin': '20px',
+                                'box-shadow': '0 12px 15px rgba(0, 0, 0, 0.15)',
+                                'position': 'relative',
+                                'z-index': '1',
+                                'overflow': 'hidden'
+                            }
+                        ),
+                        html.Div(
+                            className="header-ripple",
+                            style={
+                                'width': '300%',
+                                'height': '300%',
+                                'background-color': 'rgba(255, 255, 255, 0.15)',
+                                'position': 'absolute',
+                                'top': '-50%',
+                                'left': '-50%',
+                                'border-radius': '50%',
+                                'transform': 'scale(0)',
+                                'z-index': '-1',
+                                'animation': 'ripple 10s linear infinite'
+                            }
+                        ),
+                    ],
+                ),
+            ],
+        ),
+     ]),
 
     dbc.Row(
     [
@@ -51,14 +77,14 @@ app.layout = dbc.Container(fluid=True, children=[
                                 ),
                                 html.Div(
                                     [
-                                        html.P(id='sp500-min', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
-                                        html.P(id='sp500-max', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
-                                        html.P(id='sp500-std', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
-                                        html.P(id='sp500-last', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
-                                        html.P(id='sp500-first', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                        html.P(id='sp500-min', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px', 'font-weight': 'bold'}),
+                                        html.P(id='sp500-max', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px', 'font-weight': 'bold'}),
+                                        html.P(id='sp500-std', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px', 'font-weight': 'bold'}),
+                                        html.P(id='sp500-last', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px', 'font-weight': 'bold'}),
+                                        html.P(id='sp500-first', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px', 'font-weight': 'bold'}),
                                     ],
                                     className="info-box text-center",
-                                    style={'background-color': '#EAEDED', 'border-radius': '10px', 'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)', 'padding': '20px'}
+                                    style={'background-color': '#F2F3F4', 'border-radius': '10px', 'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)', 'padding': '20px'}
                                 ),
                             ],
                             className="mb-4", md=6
@@ -76,14 +102,14 @@ app.layout = dbc.Container(fluid=True, children=[
                                 ),
                                 html.Div(
                                     [
-                                        html.P(id='nasdaq-min', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
-                                        html.P(id='nasdaq-max', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
-                                        html.P(id='nasdaq-std', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
-                                        html.P(id='nasdaq-last', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
-                                        html.P(id='nasdaq-first', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px'}),
+                                        html.P(id='nasdaq-min', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px', 'font-weight': 'bold'}),
+                                        html.P(id='nasdaq-max', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px', 'font-weight': 'bold'}),
+                                        html.P(id='nasdaq-std', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px', 'font-weight': 'bold'}),
+                                        html.P(id='nasdaq-last', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px', 'font-weight': 'bold'}),
+                                        html.P(id='nasdaq-first', className="info-text", style={'font-size': '1.1em', 'margin-bottom': '5px', 'font-weight': 'bold'}),
                                     ],
                                     className="info-box text-center",
-                                    style={'background-color': '#EAEDED', 'border-radius': '10px', 'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)', 'padding': '20px'}
+                                    style={'background-color': '#F2F3F4', 'border-radius': '10px', 'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)', 'padding': '20px'}
                                 ),
                             ],
                             className="mb-4", md=6
