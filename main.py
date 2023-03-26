@@ -7,55 +7,35 @@ import plotly.graph_objs as go
 import dash_bootstrap_components as dbc
 
 df = pd.read_csv("/home/ubuntu/Projet/Project/Generated_data/data.csv", delimiter=";")
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
 
 app.layout = dbc.Container(fluid=True, children=[
-    dbc.Container(fluid=True, children=[
-        dbc.Row(
+    dbc.Row(
+    dbc.Col(
+        html.Div(
             [
-                dbc.Col(
-                    [
-                        html.Div(
-                            [
-                                html.H1("Bienvenue dans ce Dashboard", className="main-title"),
-                                html.P("Suivez en direct l'évolution du prix du S&P500 et du NASDAQ.", className="subtitle"),
-                                html.P("Nous mettons à jour les données toutes les minutes.", className="subtitle"),
-                            ],
-                            className="header text-center py-5",
-                            style={
-                                'background': 'linear-gradient(135deg, #2E4053 0%, #4a69bd 100%)',
-                                'color': 'white',
-                                'border-radius': '10px',
-                                'padding': '30px',
-                                'margin': '20px',
-                                'box-shadow': '0 12px 15px rgba(0, 0, 0, 0.15)',
-                                'position': 'relative',
-                                'z-index': '1',
-                                'overflow': 'hidden'
-                            }
-                        ),
-                        html.Div(
-                            className="header-ripple",
-                            style={
-                                'width': '300%',
-                                'height': '300%',
-                                'background-color': 'rgba(255, 255, 255, 0.15)',
-                                'position': 'absolute',
-                                'top': '-50%',
-                                'left': '-50%',
-                                'border-radius': '50%',
-                                'transform': 'scale(0)',
-                                'z-index': '-1',
-                                'animation': 'ripple 10s linear infinite'
-                            }
-                        ),
-                    ],
-                ),
+                html.H1("Bienvenue dans ce Dashboard", className="main-title"),
+                html.P("Suivez en direct l'évolution du prix du S&P500 et du NASDAQ.", className="subtitle"),
+                html.P("Nous mettons à jour les données toutes les minutes.", className="subtitle"),
             ],
+            className="header text-center py-5",
+            style={
+                'background': 'linear-gradient(135deg, #2E4053 0%, #4a69bd 100%)',
+                'color': 'white',
+                'border-radius': '10px',
+                'padding': '30px',
+                'margin': '20px auto',
+                'box-shadow': '0 12px 15px rgba(0, 0, 0, 0.15)',
+                'position': 'relative',
+                'z-index': '1',
+                'overflow': 'hidden'
+            }
         ),
-     ]),
+    )
+),
+
 
     dbc.Row(
     [
@@ -123,8 +103,6 @@ app.layout = dbc.Container(fluid=True, children=[
     ],
 ),
 
-
-                    
 
     dbc.Row(
         [
